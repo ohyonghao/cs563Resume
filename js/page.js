@@ -8,6 +8,7 @@ function generateNavbar(pages) {
         let li = document.createElement("li");
         li.setAttribute("class", "list-item");
         li.setAttribute("id", name);
+        li.setAttribute("onclick", callback);
         li.textContent = name;
         ul.appendChild(li);
     });
@@ -15,16 +16,47 @@ function generateNavbar(pages) {
     app.appendChild(ul);
 }
 
-function generateAbout() {}
-function generatePrevious() {}
-function generateProjects() {}
-function generateContact() {}
+function clearApp() {
+    let app = document.getElementById("app");
+    app.innerHTML = "";
+    return app;
+}
+
+function generateAbout() {
+    // Grab the main section
+    let app = clearApp();
+
+    let p = document.createElement("p");
+    p.textContent = `Good news everyone! My site is now live here on Github Pages. Allow me to
+    briefly introduce myself. My name is David Post. I am a graduate student
+    here at Portland State University (PSU). I graduated from PSU in June of
+    2020 with a Bachelors of Science in Computer Science and Mathematics,
+    while minoring in Physics.`;
+
+    app.appendChild(p);
+}
+function generatePrevious() {
+    // Grab the main section
+    let app = clearApp();
+
+    let p = document.createElement("p");
+    p.textContent = `Previous work experience:`;
+
+    app.appendChild(p);
+}
+function generateProjects() {
+    clearApp();
+}
+function generateContact() {
+    clearApp();
+}
 
 let pageCallback = new Map([
-    ["About", generateAbout],
-    ["Previous", generatePrevious],
-    ["Projects", generateProjects],
-    ["Contact", generateContact],
+    ["About", "generateAbout()"],
+    ["Previous", "generatePrevious()"],
+    ["Projects", "generateProjects()"],
+    ["Contact", "generateContact()"],
 ]);
 
 generateNavbar(pageCallback);
+generateAbout();
