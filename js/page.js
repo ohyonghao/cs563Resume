@@ -8,17 +8,27 @@ function generateNavbar(pages) {
         let li = document.createElement("li");
         li.setAttribute("class", "list-item");
         li.setAttribute("id", "nav" + name);
-        li.setAttribute("onclick", callback);
 
         let a = document.createElement("a");
         a.setAttribute("class", "nav-link");
         a.setAttribute("href", "#" + name);
+        a.setAttribute("onclick", callback);
         a.textContent = name;
+
         li.appendChild(a);
         ul.appendChild(li);
     });
 
     app.appendChild(ul);
+}
+
+function setActiveNavbar(active) {
+    let nav = document.getElementById("navbar");
+    Array.from(navbar.getElementsByClassName("list-item")).forEach((item) =>
+        item.setAttribute("class", "list-item")
+    );
+    let li = document.getElementById("nav" + active);
+    li.setAttribute("class", "list-item active");
 }
 
 function clearApp() {
@@ -28,6 +38,8 @@ function clearApp() {
 }
 
 function generateAbout() {
+    // Set Navbar
+    setActiveNavbar("About");
     // Grab the main section
     let app = clearApp();
 
@@ -55,6 +67,8 @@ function generateAbout() {
     app.appendChild(div);
 }
 function generatePrevious() {
+    // Set Navbar
+    setActiveNavbar("Previous");
     // Main content
     job1descr = [
         `UPS was my first job which I got while I was working in highschool.`,
@@ -126,9 +140,13 @@ function addJob(id, name, position, other) {
 }
 
 function generateProjects() {
-    clearApp();
+    // Set Navbar
+    setActiveNavbar("Projects");
+    let app = clearApp();
 }
 function generateContact() {
+    // Set Navbar
+    setActiveNavbar("Contact");
     clearApp();
 }
 
@@ -139,5 +157,5 @@ let pageCallback = new Map([
     ["Contact", "generateContact()"],
 ]);
 
-generateNavbar(pageCallback);
+generateNavbar(pageCallback, "About");
 generateAbout();

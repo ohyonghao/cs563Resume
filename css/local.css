@@ -38,6 +38,10 @@ a.nav-link {
     text-decoration-line: none;
 }
 
+.list-item.active {
+    background-color: var(--purple);
+}
+
 .headshot {
     border-radius: 100%;
     width: 200px;
