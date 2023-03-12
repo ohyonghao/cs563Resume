@@ -9,11 +9,11 @@ function generateNavbar(pages) {
         li.setAttribute("class", "list-item");
         li.setAttribute("id", "nav" + name);
         li.setAttribute("onclick", callback);
-        li.textContent = name;
 
         let a = document.createElement("a");
         a.setAttribute("class", "nav-link");
         a.setAttribute("href", "#" + name);
+        a.textContent = name;
         li.appendChild(a);
         ul.appendChild(li);
     });
