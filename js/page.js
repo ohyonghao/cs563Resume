@@ -1,15 +1,30 @@
-function generateSections() {
-    let app = document.getElementsByTagName("main")[0];
+function generateNavbar(pages) {
+    let app = document.getElementById("navbar");
+    app.innerHTML = "";
+    let ul = document.createElement("ul");
+    ul.setAttribute("class", "nav-list");
 
-    ["about", "previous", "projects", "contact"]
-        .map((name) => {
-            let section = document.createElement("section");
-            section.setAttribute("id", name);
-            section.setAttribute("class", "text-center");
-            console.log(name);
-            return section;
-        })
-        .forEach((section) => app.appendChild(section));
+    pages.forEach((callback, name) => {
+        let li = document.createElement("li");
+        li.setAttribute("class", "list-item");
+        li.setAttribute("id", name);
+        li.textContent = name;
+        ul.appendChild(li);
+    });
+
+    app.appendChild(ul);
 }
 
-generateSections();
+function generateAbout() {}
+function generatePrevious() {}
+function generateProjects() {}
+function generateContact() {}
+
+let pageCallback = new Map([
+    ["About", generateAbout],
+    ["Previous", generatePrevious],
+    ["Projects", generateProjects],
+    ["Contact", generateContact],
+]);
+
+generateNavbar(pageCallback);
