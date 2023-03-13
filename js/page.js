@@ -97,7 +97,9 @@ function generatePrevious() {
     let app = clearApp();
 
     let jobdiv = document.createElement("div");
+    jobdiv.setAttribute("id", "Previous");
     jobdiv.setAttribute("class", "container");
+
     let rowdiv = document.createElement("div");
     rowdiv.setAttribute("class", "row row-cols-auto");
     rowdiv.append(addJob("job1", "UPS", "Sorter", job1descr));
@@ -116,8 +118,9 @@ function generatePrevious() {
 }
 
 function addJob(id, name, position, other) {
-    job = document.createElement("div");
+    let job = document.createElement("div");
     job.setAttribute("class", "figure text-wrap col-md");
+
     let h2 = document.createElement("h2");
     h2.textContent = name;
 
@@ -142,12 +145,121 @@ function addJob(id, name, position, other) {
 function generateProjects() {
     // Set Navbar
     setActiveNavbar("Projects");
+    // Main content
+    proj1descr = [
+        `Pixelater2 is a simple image processing library written in C++ using modern C++ language 
+        coding practices as of C++17. These include templates, iterators, multithreading, lambdas,
+        and various STL Algorithms.`,
+    ];
+    proj2descr = [
+        `While using a particular VPN service in Linux there was lack of GUI support, 
+    but it did come with a good command line interface which could poll state and other information
+    useful information.`,
+        `As such, I sought out to create a GUI which encapsulates the use of this CLI. Using the Qt
+        framework for the GUI creation, I created this program which also includes a large colored
+        icon that is easy to see whether or not one is currently connected to the VPN.`,
+    ];
+    proj3descr = [
+        `As part of my schoolwork for Computer Graphics we were tasked with creating a themepark 
+    using OpenGL. Originally this used FTLK, but I decided to port this projeect to the Qt framework.`,
+        `This project uses an OOP hierarchy concept to construct the environment. Taking primatives 
+        and building upon them. This includes reading of TGA images, vertex shader programming, and 
+        various concepts of Computer Graphics.`,
+    ];
+    proj4descr = [``];
+
+    // Grab the main section
     let app = clearApp();
+
+    let projdiv = document.createElement("div");
+    projdiv.setAttribute("id", "Previous");
+    projdiv.setAttribute("class", "container");
+
+    let rowdiv = document.createElement("div");
+    rowdiv.setAttribute("class", "row row-cols-auto");
+    rowdiv.append(
+        addProject(
+            "proj1",
+            "Pixelater2",
+            "https://github.com/ohyonghao/Pixelater2",
+            "C++ Qt",
+            "",
+            proj1descr
+        )
+    );
+    rowdiv.append(
+        addProject(
+            "proj2",
+            "SuiDaoGai",
+            "https://github.com/ohyonghao/SuiDaoGai",
+            "C++ Qt",
+            "GPL v3.0",
+            proj2descr
+        )
+    );
+    rowdiv.append(
+        addProject(
+            "proj3",
+            "RollerCoaster",
+            "https://github.com/ohyonghao/RollerCoaster",
+            "C++ Qt",
+            "GPL v3.0",
+            proj3descr
+        )
+    );
+    projdiv.appendChild(rowdiv);
+    app.appendChild(projdiv);
 }
+
+function addProject(
+    id,
+    projectName,
+    projectURL,
+    projectFrameworks,
+    projectLicense,
+    projectDescr
+) {
+    let projdiv = document.createElement("div");
+    projdiv.setAttribute("class", "figure text-wrap col-md");
+
+    let h2 = document.createElement("h2");
+    let url = document.createElement("a");
+    url.setAttribute("href", projectURL);
+    url.textContent = projectName;
+    h2.appendChild(url);
+
+    let frameworks = document.createElement("h3");
+    frameworks.setAttribute("class", "text-wrap");
+    frameworks.textContent = "Frameworks: " + projectFrameworks;
+
+    let license = document.createElement("h3");
+    license.setAttribute("class", "text-wrap");
+    license.textContent = "License: " + projectLicense;
+
+    projdiv.appendChild(h2);
+    projdiv.appendChild(frameworks);
+    projdiv.appendChild(license);
+
+    projectDescr.forEach((text) => {
+        let descr = document.createElement("p");
+        descr.setAttribute("id", id);
+        descr.setAttribute("class", "text-wrap");
+        descr.textContent = text;
+        projdiv.appendChild(descr);
+    });
+    return projdiv;
+}
+
 function generateContact() {
     // Set Navbar
     setActiveNavbar("Contact");
     clearApp();
+
+    let contdiv = document.createElement("div");
+    contdiv.setAttribute("id", "Projects");
+    contdiv.setAttribute("class", "container");
+
+    app.appendChild(contdiv);
 }
 
 let pageCallback = new Map([

@@ -47,7 +47,3 @@ a.nav-link {
     width: 200px;
     height: 200px;
 }
-
-p::first-line {
-    font-weight: bold;
-}
