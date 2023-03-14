@@ -260,6 +260,108 @@ function generateContact() {
     contdiv.setAttribute("class", "container");
 
     app.appendChild(contdiv);
+
+    let form = document.createElement("form");
+
+    form.setAttribute("class", "p-3 bg-light mx-auto");
+
+    let title = document.createElement("h1");
+    title.setAttribute("class", "text-uppercase");
+    title.textContent = "Contact Form";
+
+    // put form elements together
+    form.appendChild(title);
+    createTextInput(form, "text", "First Name:", "firstname");
+    createTextInput(form, "text", "Last Name:", "lastname");
+    createTextInput(form, "email", "Email:", "email");
+    createButtons(form);
+
+    // Add event listener
+    form.addEventListener("submit", logSubmit);
+
+    contdiv.appendChild(form);
+    app.appendChild(contdiv);
+}
+
+function createTextInput(parent, type, label, input_name) {
+    let row = document.createElement("div");
+    row.setAttribute("class", "p-1 form-group row");
+
+    let input_label = document.createElement("label");
+    input_label.setAttribute("class", "col-sm-4 col-form-label");
+    input_label.setAttribute("for", input_name);
+    input_label.textContent = label;
+
+    let input_div = document.createElement("div");
+    input_div.setAttribute("class", "col-sm-8");
+    input_div.setAttribute("type", type);
+
+    let input = document.createElement("input");
+    input.setAttribute("type", type);
+    input.setAttribute("id", input_name);
+    input.setAttribute("class", "form-control");
+
+    // put things together
+    row.appendChild(input_label);
+    input_div.appendChild(input);
+    row.appendChild(input_div);
+    parent.append(row);
+}
+
+function addButton(type, name, primary) {
+    let style;
+    if (primary) {
+        style = "primary";
+    } else {
+        style = "secondary";
+    }
+
+    let button = document.createElement("button");
+    button.setAttribute("type", type);
+    button.setAttribute("class", "btn btn-" + style + " mb-2");
+    button.textContent = name;
+
+    return button;
+}
+
+function createButtons(parent) {
+    let div = document.createElement("div");
+    div.setAttribute("class", "p-3 w-50 mx-auto");
+
+    div.appendChild(addButton("submit", "Submit", true));
+    div.appendChild(addButton("reset", "Reset", false));
+
+    parent.appendChild(div);
+}
+
+function logSubmit(event) {
+    event.preventDefault();
+    // Get info
+    let info = document.forms[0];
+
+    // Check if form is empty
+    if (
+        info.elements[0].value === "" &&
+        info.elements[1].value === "" &&
+        info.elements[6].value === ""
+    ) {
+        console.log("You must enter some data to submit this form");
+        return;
+    }
+
+    // Display info
+    console.log("======== Form Submission ========");
+
+    console.log(
+        info.elements[0].labels[0].textContent + " " + info.elements[0].value
+    );
+    console.log(
+        info.elements[1].labels[0].textContent + " " + info.elements[1].value
+    );
+
+    console.log(
+        info.elements[2].labels[0].textContent + " " + info.elements[2].value
+    );
 }
 
 let pageCallback = new Map([
@@ -270,4 +372,4 @@ let pageCallback = new Map([
 ]);
 
 generateNavbar(pageCallback, "About");
-generateAbout();
+generateContact();
