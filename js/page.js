@@ -9,12 +9,12 @@ function generateNavbar(pages) {
         li.setAttribute("class", "list-item");
         li.setAttribute("id", name);
         li.onclick = function () {
-            document.getElementById("nav" + name).click();
+            document.getElementById("link" + name).click();
         };
 
         let a = document.createElement("a");
         a.setAttribute("class", "nav-link");
-        a.setAttribute("id", "nav" + name);
+        a.setAttribute("id", "link" + name);
         a.setAttribute("href", "#" + "nav" + name);
         a.setAttribute("onclick", callback);
         a.textContent = name;
