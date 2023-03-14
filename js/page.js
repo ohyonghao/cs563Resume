@@ -7,11 +7,15 @@ function generateNavbar(pages) {
     pages.forEach((callback, name) => {
         let li = document.createElement("li");
         li.setAttribute("class", "list-item");
-        li.setAttribute("id", "nav" + name);
+        li.setAttribute("id", name);
+        li.onclick = function () {
+            document.getElementById("nav" + name).click();
+        };
 
         let a = document.createElement("a");
         a.setAttribute("class", "nav-link");
-        a.setAttribute("href", "#" + name);
+        a.setAttribute("id", "nav" + name);
+        a.setAttribute("href", "#" + "nav" + name);
         a.setAttribute("onclick", callback);
         a.textContent = name;
 
@@ -27,7 +31,7 @@ function setActiveNavbar(active) {
     Array.from(navbar.getElementsByClassName("list-item")).forEach((item) =>
         item.setAttribute("class", "list-item")
     );
-    let li = document.getElementById("nav" + active);
+    let li = document.getElementById(active);
     li.setAttribute("class", "list-item active");
 }
 
@@ -44,7 +48,7 @@ function generateAbout() {
     let app = clearApp();
 
     let div = document.createElement("div");
-    div.setAttribute("id", "About");
+    div.setAttribute("id", "nav" + "About");
 
     // Img
     let img = document.createElement("img");
@@ -97,7 +101,7 @@ function generatePrevious() {
     let app = clearApp();
 
     let jobdiv = document.createElement("div");
-    jobdiv.setAttribute("id", "Previous");
+    jobdiv.setAttribute("id", "nav" + "Previous");
     jobdiv.setAttribute("class", "container");
 
     let rowdiv = document.createElement("div");
@@ -172,7 +176,7 @@ function generateProjects() {
     let app = clearApp();
 
     let projdiv = document.createElement("div");
-    projdiv.setAttribute("id", "Previous");
+    projdiv.setAttribute("id", "nav" + "Previous");
     projdiv.setAttribute("class", "container");
 
     let rowdiv = document.createElement("div");
@@ -256,7 +260,7 @@ function generateContact() {
     clearApp();
 
     let contdiv = document.createElement("div");
-    contdiv.setAttribute("id", "Projects");
+    contdiv.setAttribute("id", "nav" + "Projects");
     contdiv.setAttribute("class", "container");
 
     app.appendChild(contdiv);
@@ -372,4 +376,4 @@ let pageCallback = new Map([
 ]);
 
 generateNavbar(pageCallback, "About");
-generateContact();
+generateAbout();
