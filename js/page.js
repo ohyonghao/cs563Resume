@@ -8,9 +8,6 @@ function generateNavbar(pages) {
         let li = document.createElement("li");
         li.setAttribute("class", "list-item");
         li.setAttribute("id", name);
-        li.onclick = function () {
-            document.getElementById("link" + name).click();
-        };
 
         let a = document.createElement("a");
         a.setAttribute("class", "nav-link");
